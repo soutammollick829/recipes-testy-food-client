@@ -1,15 +1,18 @@
 import React from "react";
 import bgImage from "../../assets/images/10816_background_1984x900.jpg";
-import chefBg from '../../assets/images/vegetables-set-left-black-slate_1220-686.avif'
+import chefBg from "../../assets/images/vegetables-set-left-black-slate_1220-686.avif";
 import caroselImg1 from "../../assets/images/Hsu-Changing.webp";
 import caroselImg2 from "../../assets/images/l-intro-1643997465.jpg";
 import caroselImg3 from "../../assets/images/Chilli-Garlic-Noodles-Veg.jpg";
 import caroselImg4 from "../../assets/images/best-chinese-restaurants-lagos.webp";
 import image from "../../assets/images/Honey-Garlic-Asian-Chicken-KabobsIMG_9960.jpg";
-import { FaArrowRight } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { FaArrowRight} from "react-icons/fa";
+import { Link, useLoaderData } from "react-router-dom";
+import ChefDetailsCard from "./chefDetailsCard/ChefDetailsCard";
+import Recipes from "./TodayRecipes/Recipes";
 
 const Home = () => {
+  const chefDetails = useLoaderData();
   return (
     <>
       <div
@@ -67,7 +70,7 @@ const Home = () => {
         {/* banner & carosel section close */}
       </div>
 
-      <div className="flex items-center justify-center mt-16 mx-10 gap-20">
+      <div className="lg:flex items-center justify-center mt-16 mx-10 gap-20">
         <div className="py-4">
           <img className="w-80 h-72 rounded-full" src={image} alt="" />
         </div>
@@ -84,7 +87,7 @@ const Home = () => {
             exactly how to make these mouth watering air fryer appetizers in
             easy steps.
           </p>
-          <Link to='/kabobs'>
+          <Link to="/kabobs">
             <button className="btn rounded-full bg-amber-500 border-0 mt-10">
               LEARN MORE <FaArrowRight />
             </button>
@@ -92,8 +95,30 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="hero min-h-screen" style={{ backgroundImage: `url(${chefBg})` }}>
-        
+      <div
+        className="min-h-screen text-center mt-5"
+        style={{ backgroundImage: `url(${chefBg})` }}
+      >
+        <div className="mt-10">
+        <p className="text-white">Expert & professional</p>
+        <h1 className="text-white text-4xl font-bold">Top chef's recipes</h1>
+        </div>
+
+        <div className="grid lg:grid-cols-3 mt-10">
+        {chefDetails.map((chefDetail) => (
+          <ChefDetailsCard
+            key={chefDetail.id}
+            chefDetail={chefDetail}
+          ></ChefDetailsCard>
+        ))}
+        </div>
+        <div>
+          <h2 className="text-warning font-bold">Waiting for your call: (542) 548 6254</h2>
+        </div>
+      </div>
+      <div>
+        <h1 className="text-center mt-10 text-4xl font-bold">Today recipes</h1>
+        {<Recipes/>}
       </div>
     </>
   );
