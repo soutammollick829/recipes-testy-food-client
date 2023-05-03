@@ -6,7 +6,7 @@ import { AuthContext } from "../../Provider/AuthProvider";
 
 const Login = () => {
   
-  const {loginUser,handelSignIn} = useContext(AuthContext);
+  const {loginUser,handelSignIn,signUpWithGithub} = useContext(AuthContext);
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -34,6 +34,17 @@ const Login = () => {
   //sign in with google popup function
  const handelSignInWithPopup = () => {
   handelSignIn()
+  .then(result => {
+    const user = result.user;
+    console.log(user)
+  })
+  .catch(error => {
+    console.log(error)
+  } )
+}
+
+const signInGithub = () => {
+  signUpWithGithub()
   .then(result => {
     const user = result.user;
     console.log(user)
@@ -87,7 +98,7 @@ const Login = () => {
               <div className="text-center font-bold space-x-5">
                 <h4 className="mb-5">Login with</h4>
                 <button onClick={handelSignInWithPopup} className="btn btn-outline btn-warning"><FaGoogle className="text-xl"/></button>
-                <button className="btn btn-outline btn-warning"><FaGithub className="text-xl"/></button>
+                <button onClick={signInGithub} className="btn btn-outline btn-warning"><FaGithub className="text-xl"/></button>
               </div>
             </div>
             <div className="form-control mt-6">
