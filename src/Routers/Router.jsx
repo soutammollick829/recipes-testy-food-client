@@ -4,7 +4,9 @@ import Home from "../Pages/Home/Home";
 import Kabobs from "../Pages/kabobs/Kabobs";
 import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
-import Recipes from "../Pages/Home/TodayRecipes/Recipes";
+
+import RecipesDetails from "../Pages/recipes/RecipesDetails";
+import Blog from "../Pages/blogPage/Blog";
 
 const router = createBrowserRouter([
     {
@@ -15,6 +17,11 @@ const router = createBrowserRouter([
                 path:'/',
                 element:<Home/>,
                 loader: () => fetch(`http://localhost:5000/chef`)
+            },
+            {
+                path:'/chef/:id',
+                element:<RecipesDetails/>,
+                loader: ({params}) => fetch(`http://localhost:5000/chef/${params.id}`)
             },
             {
                 path:'/login',
@@ -28,6 +35,10 @@ const router = createBrowserRouter([
                 path:'/kabobs',
                 element:<Kabobs/>
             },
+            {
+                path:'/blog',
+                element:<Blog/>
+            }
         ]
     }
 ]);
