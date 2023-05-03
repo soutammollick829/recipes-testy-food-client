@@ -6,12 +6,13 @@ import { AuthContext } from "../../Provider/AuthProvider";
 
 const Login = () => {
   
-  const {loginUser} = useContext(AuthContext);
+  const {loginUser,handelSignIn} = useContext(AuthContext);
 
   const location = useLocation();
   const navigate = useNavigate();
   const from = location.state?.from?.pathname || '/'
 
+//Login form submit section
   const handelLogin = event =>{
     event.preventDefault();
     const form = event.target;
@@ -27,9 +28,22 @@ const Login = () => {
       .catch(error => {
         console.log(error)
       } )
+     
     }
   }
+  //sign in with google popup function
+ const handelSignInWithPopup = () => {
+  handelSignIn()
+  .then(result => {
+    const user = result.user;
+    console.log(user)
+  })
+  .catch(error => {
+    console.log(error)
+  } )
+}
   return (
+    //log-in card
     <div className="hero min-h-screen bg-base-200">
       <div className="hero-content flex-col lg:flex-row-reverse">
         <div className="text-center lg:text-left">
@@ -72,7 +86,7 @@ const Login = () => {
               </label>
               <div className="text-center font-bold space-x-5">
                 <h4 className="mb-5">Login with</h4>
-                <button className="btn btn-outline btn-warning"><FaGoogle className="text-xl"/></button>
+                <button onClick={handelSignInWithPopup} className="btn btn-outline btn-warning"><FaGoogle className="text-xl"/></button>
                 <button className="btn btn-outline btn-warning"><FaGithub className="text-xl"/></button>
               </div>
             </div>

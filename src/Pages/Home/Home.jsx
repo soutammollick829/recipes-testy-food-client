@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from "react";
 import bgImage from "../../assets/images/10816_background_1984x900.jpg";
 import chefBg from "../../assets/images/vegetables-set-left-black-slate_1220-686.avif";
@@ -21,6 +22,8 @@ const Home = () => {
           backgroundImage: `url(${bgImage})`,
         }}
       >
+
+        {/* header & banner section start */}
         <div className="hero-overlay bg-opacity-60"></div>
         <div className="hero-content  text-neutral-content gap-32">
           <div className="mx-10">
@@ -37,6 +40,7 @@ const Home = () => {
             </button>
           </div>
           <div>
+            {/* carosel  */}
             <div className="carousel w-full">
               <div id="item1" className="carousel-item w-full mt-14">
                 <img src={caroselImg1} className="w-96 h-72" />
@@ -95,6 +99,7 @@ const Home = () => {
         </div>
       </div>
 
+{/* chef card section  */}
       <div
         className="min-h-screen text-center mt-5"
         style={{ backgroundImage: `url(${chefBg})` }}
@@ -118,6 +123,7 @@ const Home = () => {
           </h2>
         </div>
       </div>
+      {/* close chef snd card section  */}
       <div>
         <h1 className="text-center mt-10 text-4xl font-bold">Today recipes</h1>
         {<Recipes />}
