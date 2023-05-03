@@ -1,9 +1,29 @@
 /* eslint-disable no-unused-vars */
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { FaGithub, FaGoogle} from "react-icons/fa";
+import { AuthContext } from "../../Provider/AuthProvider";
 
 const Login = () => {
+  
+  const {loginUser} = useContext(AuthContext)
+
+  const handelLogin = event =>{
+    event.preventDefault();
+    const form = event.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    if(email,password){
+      loginUser(email,password)
+      .then(result => {
+        const user = result.user;
+        console.log(user)
+      })
+      .catch(error => {
+        console.log(error)
+      } )
+    }
+  }
   return (
     <div className="hero min-h-screen bg-base-200">
       <div className="hero-content flex-col lg:flex-row-reverse">

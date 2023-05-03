@@ -1,8 +1,35 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { FaGithub, FaGoogle} from "react-icons/fa";
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../Provider/AuthProvider';
 
 const Register = () => {
+  const {createUser} = useContext(AuthContext);
+
+  const handelRegister = event =>{
+    event.preventDefault();
+    const form = event.target;
+    const name = form.name.value;
+    const photo = form.url.value;
+    const email = form.email.value;
+    const password = form.password.value;
+    if(/"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$"/.test(password)){
+      console.log(`Minimum eight characters, at least one uppercase letter, one lowercase letter and one number`)
+      return;
+    }
+
+    if((name,email,password)){
+      createUser(email,password)
+      .then(result => {
+        const user = result.user;
+        console.log(user)
+
+      })
+      .catch(error => {
+        console.error(error.message)
+      })
+    }
+  }
     return (
         <div className="hero min-h-screen bg-base-200">
       <div className="hero-content flex-col">
@@ -15,7 +42,7 @@ const Register = () => {
           </p>
         </div>
         <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-          <form className="card-body">
+          <form onSubmit={handelRegister} className="card-body">
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Name</span>
@@ -69,7 +96,7 @@ const Register = () => {
               </div>
             </div>
             <div className="form-control mt-6">
-              <button className="btn bg-amber-500 border-0">Login</button>
+              <button className="btn bg-amber-400 border-0 hover:bg-amber-500">Register</button>
             </div>
             <p>Already have an account? <Link to='/login'><span className="text-amber-500 font-bold">Please Login!</span></Link>
             </p>

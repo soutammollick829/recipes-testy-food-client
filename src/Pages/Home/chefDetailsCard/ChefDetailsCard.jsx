@@ -4,7 +4,7 @@ import { FaHandPointRight, FaRegThumbsUp } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const ChefDetailsCard = ({ chefDetail }) => {
-  const {id, name, chef_bio, chef_image, likes, experience, recipes } = chefDetail;
+  const {id, name, chef_bio, chef_image, likes, experience } = chefDetail;
   return (
     <>
       <div className="mb-10">

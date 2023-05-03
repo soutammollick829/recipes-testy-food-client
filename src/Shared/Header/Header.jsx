@@ -1,8 +1,21 @@
-import React from "react";
+import React, { useContext } from "react";
 import navLogo from "../../../src/assets/images/logo/images.png";
 import { Link, NavLink } from "react-router-dom";
+import { AuthContext } from "../../Provider/AuthProvider";
+import { FaUserCircle } from "react-icons/fa";
 
 const Header = () => {
+
+  const {user,logOut} = useContext(AuthContext);
+
+  const handelLogOut = () =>{
+    logOut()
+    .then()
+    .catch(error =>{
+      console.error(error)
+    })
+  }
+
   return (
     <div className="navbar bg-base-100 mt-5 px-10">
       <div className="navbar-start">
@@ -73,22 +86,22 @@ const Header = () => {
                 Home
               </NavLink>
         <NavLink
-                to="/food"
+                
                 style={({ isActive, isPending }) => {
                   return {
-                    fontWeight: isActive ? "bold" : "",
-                    color: isPending ? "red" : "f5b942",
+                    fontWeight: isActive ? "" : "",
+                    color: isPending ? "" : "f5b942",
                   };
                 }}
               >
                 Food
               </NavLink>
         <NavLink
-                to="/chef"
+                to='/chef'
                 style={({ isActive, isPending }) => {
                   return {
                     fontWeight: isActive ? "bold" : "",
-                    color: isPending ? "red" : "f5b942",
+                    color: isPending ? "" : "f5b942",
                   };
                 }}
               >
@@ -109,9 +122,13 @@ const Header = () => {
         </ul>
       </div>
       <div className="navbar-end">
+        {user && <FaUserCircle className="text-4xl me-5"/>}
+        {user?
+          <button onClick={handelLogOut} className="btn bg-amber-400 hover:bg-amber-500 border-0">Logout</button>:
         <Link to='/login'>
           <button className="btn bg-amber-400 hover:bg-amber-500 border-0">Login</button>
         </Link>
+        }
       </div>
     </div>
   );
