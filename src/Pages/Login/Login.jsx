@@ -1,12 +1,16 @@
 /* eslint-disable no-unused-vars */
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaGithub, FaGoogle} from "react-icons/fa";
 import { AuthContext } from "../../Provider/AuthProvider";
 
 const Login = () => {
   
-  const {loginUser} = useContext(AuthContext)
+  const {loginUser} = useContext(AuthContext);
+
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location.state?.from?.pathname || '/'
 
   const handelLogin = event =>{
     event.preventDefault();
@@ -18,6 +22,7 @@ const Login = () => {
       .then(result => {
         const user = result.user;
         console.log(user)
+        navigate(from, {replace:true})
       })
       .catch(error => {
         console.log(error)
@@ -36,7 +41,7 @@ const Login = () => {
           </p>
         </div>
         <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-          <form className="card-body">
+          <form onSubmit={handelLogin} className="card-body">
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Email</span>
@@ -72,7 +77,7 @@ const Login = () => {
               </div>
             </div>
             <div className="form-control mt-6">
-              <button className="btn bg-amber-500 border-0">Login</button>
+              <button className="btn bg-amber-400 border-0 hover:bg-amber-500">Login</button>
             </div>
             <p>New to here? <Link to='/register'><span className="text-amber-500 font-bold">Please Register!</span></Link>
             </p>

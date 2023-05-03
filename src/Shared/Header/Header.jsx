@@ -97,15 +97,15 @@ const Header = () => {
                 Food
               </NavLink>
         <NavLink
-                to='/chef'
+                
                 style={({ isActive, isPending }) => {
                   return {
-                    fontWeight: isActive ? "bold" : "",
+                    fontWeight: isActive ? "" : "",
                     color: isPending ? "" : "f5b942",
                   };
                 }}
               >
-                Top chef
+                Contact us
               </NavLink>
         <NavLink
                 to="/blog"
