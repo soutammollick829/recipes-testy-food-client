@@ -4,7 +4,7 @@ import recipesImg3 from '../../../assets/images/Hsu-Changing.webp'
 
 const Recipes = () => {
   return (
-    <div className='lg:flex justify-around mt-20 mb-20'>
+    <div className='lg:flex mx-10 justify-around mt-20 mb-20'>
     <div className="card w-72 lg:w-60 bg-base-100 shadow-xl">
       <figure>
         <img

@@ -27,7 +27,7 @@ const Kabobs = () => {
         </p>
         <div className="card-actions justify-end">
           <Link to='/'>
-            <button className="btn bg-amber-500 border-0">
+            <button className="btn bg-amber-500 border-0 hover:bg-amber-600">
               <FaArrowLeft className="me-2" />
               Back to home
             </button>

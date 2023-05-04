@@ -35,7 +35,7 @@ const Home = () => {
               excepturi exercitationem quasi. In deleniti eaque aut repudiandae
               et a id nisi.
             </p>
-            <button className="btn rounded-full bg-amber-500 border-0">
+            <button className="btn rounded-full bg-amber-500 border-0 hover:bg-amber-600">
               BOOK A TABLE
             </button>
           </div>
@@ -92,7 +92,7 @@ const Home = () => {
             easy steps.
           </p>
           <Link to="/kabobs">
-            <button className="btn rounded-full bg-amber-500 border-0 mt-10">
+            <button className="btn rounded-full bg-amber-500 border-0 mt-10 hover:bg-amber-600">
               LEARN MORE <FaArrowRight />
             </button>
           </Link>
@@ -102,7 +102,7 @@ const Home = () => {
 {/* chef card section  */}
       <div
         className="min-h-screen text-center mt-5"
-        style={{ backgroundImage: `url(${chefBg})` }}
+        style={{ backgroundImage: `url(${chefBg})`}}
       >
         <div className="mt-10">
           <p className="text-white">Expert & professional</p>

@@ -97,7 +97,7 @@ const Header = () => {
                 Food
               </NavLink>
         <NavLink
-                
+                to='/food'
                 style={({ isActive, isPending }) => {
                   return {
                     fontWeight: isActive ? "" : "",

@@ -1,10 +1,11 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { FaGithub, FaGoogle} from "react-icons/fa";
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Provider/AuthProvider';
 
 const Register = () => {
   const {createUser} = useContext(AuthContext);
+  const [error , setError] = useState('');
 
   const handelRegister = event =>{
     event.preventDefault();
@@ -14,8 +15,11 @@ const Register = () => {
     const email = form.email.value;
     const password = form.password.value;
     if(/"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$"/.test(password)){
-      console.log(`Minimum eight characters, at least one uppercase letter, one lowercase letter and one number`)
+      setError(`Minimum eight characters, at least one uppercase letter, one lowercase letter and one number`)
       return;
+    }
+    else if(password.length < 6){
+      setError('password must be 6 characters')
     }
 
     if((name,email,password)){
@@ -40,9 +44,11 @@ const Register = () => {
             excepturi exercitationem quasi. In deleniti eaque aut repudiandae et
             a id nisi.
           </p>
+          
         </div>
         <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
           <form onSubmit={handelRegister} className="card-body">
+          <p className='text-error flex'>{error}</p>
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Name</span>

@@ -1,11 +1,12 @@
 /* eslint-disable no-unused-vars */
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaGithub, FaGoogle} from "react-icons/fa";
 import { AuthContext } from "../../Provider/AuthProvider";
 
 const Login = () => {
-  
+  const [error, setError] = useState('');
+
   const {loginUser,handelSignIn,signUpWithGithub} = useContext(AuthContext);
 
   const location = useLocation();
@@ -18,6 +19,9 @@ const Login = () => {
     const form = event.target;
     const email = form.email.value;
     const password = form.password.value;
+    if(email !== password){
+      setError('password and email did not match')
+    }
     if(email,password){
       loginUser(email,password)
       .then(result => {
@@ -67,6 +71,7 @@ const signInGithub = () => {
         </div>
         <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
           <form onSubmit={handelLogin} className="card-body">
+          <p className='text-error flex'>{error}</p>
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Email</span>
