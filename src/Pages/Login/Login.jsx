@@ -19,7 +19,7 @@ const Login = () => {
     const form = event.target;
     const email = form.email.value;
     const password = form.password.value;
-    if(email !== password){
+    if(email == password){
       setError('password and email did not match')
     }
     if(email,password){

@@ -86,10 +86,10 @@ const Header = () => {
                 Home
               </NavLink>
         <NavLink
-                
+                to="/food"
                 style={({ isActive, isPending }) => {
                   return {
-                    fontWeight: isActive ? "" : "",
+                    fontWeight: isActive ? "bold" : "",
                     color: isPending ? "" : "f5b942",
                   };
                 }}
@@ -97,10 +97,10 @@ const Header = () => {
                 Food
               </NavLink>
         <NavLink
-                to='/food'
+                to='/'
                 style={({ isActive, isPending }) => {
                   return {
-                    fontWeight: isActive ? "" : "",
+                    fontWeight: isActive ? "bold" : "",
                     color: isPending ? "" : "f5b942",
                   };
                 }}

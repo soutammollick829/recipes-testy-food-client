@@ -9,6 +9,7 @@ import RecipesDetails from "../Pages/recipes/RecipesDetails";
 import Blog from "../Pages/blogPage/Blog";
 import PrivateRoute from "./PrivateRoute";
 import ErrorPage from "../Mainlayout/Error/ErrorPage";
+import Food from "../Pages/foodPage/Food";
 
 const router = createBrowserRouter([
     {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
                 path:'/chef/:id',
                 element:<PrivateRoute><RecipesDetails/></PrivateRoute>,
                 loader: ({params}) => fetch(`https://server-soutammollick829.vercel.app/chef/${params.id}`)
+            },
+            {
+                path:'/food',
+                element:<Food/>
             },
             {
                 path:'/login',
