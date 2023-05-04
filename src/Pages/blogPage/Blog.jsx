@@ -3,7 +3,7 @@ import React from "react";
 const Blog = () => {
   return (
     <>
-    <div className="flex">
+    <div className="lg:flex">
       <div className="card w-96">
         <div className="card-body">
           <h2 className="card-title ">Tell us the differences between uncontrolled and controlled components.</h2>
